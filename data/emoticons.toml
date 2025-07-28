@@ -1,0 +1,81 @@
+##
+# List of emoticons available on the site.  Each entry defines a
+# user‑friendly name along with the ASCII art (symbol).  You can add
+# or remove entries here and the homepage will automatically update.
+##
+
+[[emoticons]]
+name = "Smiley"
+symbol = ":-)"
+
+[[emoticons]]
+name = "Wink"
+symbol = ";-)"
+
+[[emoticons]]
+name = "Laugh"
+symbol = ":D"
+
+[[emoticons]]
+name = "Sad"
+symbol = ":-("
+
+[[emoticons]]
+name = "Tongue"
+symbol = ":P"
+
+[[emoticons]]
+name = "Big Grin"
+symbol = "^_^"
+
+[[emoticons]]
+name = "Surprised"
+symbol = "(o_O)"
+
+[[emoticons]]
+name = "Kiss"
+symbol = ":*"
+
+[[emoticons]]
+name = "Crying"
+symbol = "T_T"
+
+[[emoticons]]
+name = "Heart"
+symbol = "<3"
+
+[[emoticons]]
+name = "Table Flip"
+symbol = "(╯°□°）╯︵ ┻━┻"
+
+[[emoticons]]
+name = "Shrug"
+symbol = "¯\\_(ツ)_/¯"
+
+[[emoticons]]
+name = "Look of Disapproval"
+symbol = "ಠ_ಠ"
+
+[[emoticons]]
+name = "Lenny Face"
+symbol = "( ͡° ͜ʖ ͡°)"
+
+[[emoticons]]
+name = "Hug"
+symbol = "(づ｡◕‿‿◕｡)づ"
+
+[[emoticons]]
+name = "Facepalm"
+symbol = "(－‸ლ)"
+
+[[emoticons]]
+name = "Confused"
+symbol = "o_O"
+
+[[emoticons]]
+name = "Cheers"
+symbol = "ヽ(•‿•)ノ"
+
+[[emoticons]]
+name = "Yawn"
+symbol = "(-_-)zzz"

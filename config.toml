@@ -1,0 +1,10 @@
+base_url = "https://example.com"
+title = "Copymoticon"
+description = "A simple site to copy emoticons to the clipboard."
+
+# Default language for the site.
+default_language = "en"
+
+# Extra configuration values can go in the extra table.  Leaving
+# this here makes it easy to extend the site in the future.
+[extra]

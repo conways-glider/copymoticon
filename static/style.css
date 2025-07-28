@@ -1,0 +1,104 @@
+/*
+ * Basic styling for the emoticon copy site.
+ *
+ * You can modify these styles or add new ones to change
+ * the look and feel of the website.  The colour palette
+ * intentionally uses calm, accessible colours.  Responsive
+ * rules are included to improve usability on small screens.
+ */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f3f4f6;
+  color: #333;
+}
+
+header {
+  background-color: #673ab7;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+header p {
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+#search {
+  width: 100%;
+  padding: 0.6rem;
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.list {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.emoticon-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.emoticon-item:nth-child(odd) {
+  background-color: #fafafa;
+}
+
+.name {
+  font-weight: 600;
+  margin-right: 1rem;
+}
+
+.symbol {
+  font-family: monospace;
+  font-size: 1.2rem;
+  margin-right: auto;
+}
+
+.copy-button {
+  background-color: #009688;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.copy-button:hover {
+  background-color: #00796b;
+}
+
+@media (max-width: 600px) {
+  .emoticon-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .copy-button {
+    margin-top: 0.5rem;
+  }
+}
