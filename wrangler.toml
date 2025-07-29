@@ -1,6 +1,10 @@
 name = "copymoticon"
 compatibility_date = "2025-03-25"
 
+routes = [
+  { pattern = "copymoticon.com", custom_domain = true }
+]
+
 [build]
 command = "npm run build"
 
