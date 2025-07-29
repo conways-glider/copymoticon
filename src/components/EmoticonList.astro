@@ -1,0 +1,74 @@
+---
+import Emoticon from "./Emoticon.astro";
+
+interface Props {
+  emoticons: { category: string; name: string; symbol: string }[];
+}
+
+const { emoticons } = Astro.props;
+---
+
+<div class="container">
+  <input
+    aria-label="Search and Filter"
+    id="search"
+    placeholder="Search emoticons..."
+    type="text"
+  />
+  <div class="list">
+    {
+      emoticons.map((item) => (
+        <Emoticon name={item.name} symbol={item.symbol} />
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  const searchInput = document.getElementById("search") as HTMLInputElement;
+  const emoticonItems = Array.from(
+    document.getElementsByClassName(
+      "emoticon-item",
+    ) as HTMLCollectionOf<HTMLElement>,
+  );
+
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase();
+    emoticonItems.forEach((item) => {
+      const name =
+        item.querySelector(".name")?.textContent?.toLowerCase() || "";
+      const symbol =
+        item.querySelector(".symbol")?.textContent?.toLowerCase() || "";
+      if (name.includes(query) || symbol.includes(query)) {
+        item.style.display = "";
+      } else {
+        item.style.display = "none";
+      }
+    });
+  });
+</script>
+
+<style>
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  #search {
+    width: 100%;
+    padding: 0.6rem;
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .list {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fff;
+  }
+</style>
