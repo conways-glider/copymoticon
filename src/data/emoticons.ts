@@ -1,4 +1,8 @@
-export const staticEmoticons: {category: string;name: string;symbol: string;}[] = [
+export const staticEmoticons: {
+  category: string;
+  name: string;
+  symbol: string;
+}[] = [
   {
     category: "Happy",
     name: "Smiley face",
