@@ -20,6 +20,11 @@ export const staticEmoticons: {
   },
   {
     category: "Happy",
+    name: "Grinning",
+    symbol: "^-^",
+  },
+  {
+    category: "Happy",
     name: "Winking",
     symbol: ";)",
   },
@@ -37,6 +42,11 @@ export const staticEmoticons: {
     category: "Sad",
     name: "Crying",
     symbol: ":'(",
+  },
+  {
+    category: "Sad",
+    name: "Crying",
+    symbol: ";-;",
   },
   {
     category: "Surprised",
