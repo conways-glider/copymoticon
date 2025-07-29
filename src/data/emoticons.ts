@@ -5,7 +5,7 @@ export const staticEmoticons: {
 }[] = [
   {
     category: "Happy",
-    name: "Smiley face",
+    name: "Smile",
     symbol: ":)",
   },
   {
@@ -60,7 +60,7 @@ export const staticEmoticons: {
   },
   {
     category: "Cool",
-    name: "Lenny face",
+    name: "Lenny Face",
     symbol: "( ͡° ͜ʖ ͡°)",
   },
   {
@@ -75,17 +75,27 @@ export const staticEmoticons: {
   },
   {
     category: "Misc",
-    name: "Table flip",
+    name: "Table Flip",
     symbol: "(╯°□°）╯︵ ┻━┻",
   },
   {
     category: "Misc",
-    name: "Put table back",
+    name: "Put Table Back",
     symbol: "┬─┬ ノ( ゜-゜ノ)",
   },
   {
     category: "Misc",
-    name: "Cat smile",
+    name: "Double Table Flip",
+    symbol: "┻━┻ ︵ヽ(`Д´)ﾉ︵ ┻━┻",
+  },
+  {
+    category: "Misc",
+    name: "Put Double Table Back",
+    symbol: "┬─┬ ︵ヽ(ಠ_ಠ)ﾉ︵ ┬─┬",
+  },
+  {
+    category: "Misc",
+    name: "Cat Smile",
     symbol: "ฅ^•ﻌ•^ฅ",
   },
 ];
