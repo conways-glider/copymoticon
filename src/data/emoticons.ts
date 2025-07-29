@@ -1,101 +1,103 @@
-export const staticEmoticons: {
-  category: string;
+export interface Emoticon {
   name: string;
   symbol: string;
-}[] = [
+  tags?: string[];
+}
+
+export const StaticEmoticons: Emoticon[] = [
   {
-    category: "Happy",
     name: "Smile",
     symbol: ":)",
+    tags: ["happy", "joy"],
   },
   {
-    category: "Happy",
     name: "Laughing",
     symbol: "xD",
+    tags: ["happy", "joy"],
   },
   {
-    category: "Happy",
     name: "Grinning",
     symbol: "^_^",
+    tags: ["happy", "joy"],
   },
   {
-    category: "Happy",
     name: "Grinning",
     symbol: "^-^",
+    tags: ["happy", "joy"],
   },
   {
-    category: "Happy",
     name: "Winking",
     symbol: ";)",
+    tags: ["happy", "joy"],
   },
   {
-    category: "Happy",
     name: "Cheers",
     symbol: "\\o/",
+    tags: ["happy", "joy"],
   },
   {
-    category: "Sad",
     name: "Frowning",
     symbol: ":(",
+    tags: ["sad", "disappointed"],
   },
   {
-    category: "Sad",
     name: "Crying",
     symbol: ":'(",
+    tags: ["sad", "disappointed"],
   },
   {
-    category: "Sad",
     name: "Crying",
     symbol: ";-;",
+    tags: ["sad", "disappointed"],
   },
   {
-    category: "Surprised",
     name: "Shrug",
     symbol: "¯\\_(ツ)_/¯",
+    tags: ["confused", "indifferent"],
   },
   {
-    category: "Angry",
     name: "Angry",
     symbol: "ಠ_ಠ",
+    tags: ["angry", "frustrated"],
   },
   {
-    category: "Cool",
     name: "Lenny Face",
     symbol: "( ͡° ͜ʖ ͡°)",
+    tags: ["cool", "mischievous"],
   },
   {
-    category: "Confused",
     name: "Confused",
     symbol: "o_O",
+    tags: ["confused", "indifferent"],
   },
   {
-    category: "Love",
     name: "Hug",
     symbol: "(づ｡◕‿‿◕｡)づ",
+    tags: ["love", "affection"],
   },
   {
-    category: "Misc",
     name: "Table Flip",
     symbol: "(╯°□°）╯︵ ┻━┻",
+    tags: ["frustration", "anger"],
   },
   {
-    category: "Misc",
     name: "Put Table Back",
     symbol: "┬─┬ ノ( ゜-゜ノ)",
+    tags: ["frustration", "anger"],
   },
   {
-    category: "Misc",
     name: "Double Table Flip",
     symbol: "┻━┻ ︵ヽ(`Д´)ﾉ︵ ┻━┻",
+    tags: ["frustration", "anger"],
   },
   {
-    category: "Misc",
     name: "Put Double Table Back",
     symbol: "┬─┬ ︵ヽ(ಠ_ಠ)ﾉ︵ ┬─┬",
+    tags: ["frustration", "anger"],
   },
   {
-    category: "Misc",
     name: "Cat Smile",
     symbol: "ฅ^•ﻌ•^ฅ",
+    tags: ["cute", "cat"],
   },
 ];

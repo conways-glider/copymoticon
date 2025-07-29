@@ -1,7 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import EmoticonList from "../components/EmoticonList.astro";
-import { staticEmoticons } from "../data/emoticons.ts";
+import { StaticEmoticons } from "../data/emoticons.ts";
 ---
 
 <html lang="en">
@@ -17,7 +17,7 @@ import { staticEmoticons } from "../data/emoticons.ts";
   </head>
   <body>
     <Header />
-    <EmoticonList emoticons={staticEmoticons} />
+    <EmoticonList emoticons={StaticEmoticons} />
   </body>
 </html>
 

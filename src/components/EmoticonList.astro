@@ -1,8 +1,9 @@
 ---
 import Emoticon from "./Emoticon.astro";
+import type { Emoticon as EmoticonType } from "../data/emoticons.ts";
 
 interface Props {
-  emoticons: { category: string; name: string; symbol: string }[];
+  emoticons: EmoticonType[];
 }
 
 const { emoticons } = Astro.props;
