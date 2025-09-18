@@ -47,8 +47,9 @@ const allTags = Array.from(
 <script>
   const tagInputs = document.querySelectorAll('.tag-input') as NodeListOf<HTMLInputElement>;
 
-  // Track selected tag (single selection)
-  let selectedTag: string = '';
+  // Initialize selected tag from URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  let selectedTag = urlParams.get('tag') || '';
 
   // Function to dispatch tag filter change event
   function dispatchTagFilterChange() {
@@ -66,6 +67,18 @@ const allTags = Array.from(
         dispatchTagFilterChange();
       }
     });
+  });
+
+  // Dispatch initial state on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    // Set initial radio button state from URL
+    // Only set if a tag is specified
+    if (selectedTag !== '') {
+      tagInputs.forEach(input => {
+        input.checked = input.value === selectedTag;
+      });
+    }
+    dispatchTagFilterChange();
   });
 </script>
 

@@ -40,16 +40,15 @@ const { emoticons } = Astro.props;
     ) as HTMLCollectionOf<HTMLElement>,
   );
 
-  // State for filtering
-  let currentSearchQuery = '';
-  let selectedTag: string = '';
+  // Initialize state from URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  let currentSearchQuery = urlParams.get('search') || '';
+  let selectedTag = urlParams.get('tag') || '';
 
   // Function to check if an emoticon matches the current filters
   function matchesFilters(item: HTMLElement): boolean {
-    const name =
-      item.querySelector(".name")?.textContent?.toLowerCase() || "";
-    const symbol =
-      item.querySelector(".symbol")?.textContent?.toLowerCase() || "";
+    const name = item.querySelector(".name")?.textContent?.toLowerCase() || "";
+    const symbol = item.querySelector(".symbol")?.textContent?.toLowerCase() || "";
     const itemTags = (item.getAttribute('data-tags') || '').split(',').filter(tag => tag.trim());
 
     // Check search query match
@@ -63,6 +62,16 @@ const { emoticons } = Astro.props;
     return matchesSearch && matchesTag;
   }
 
+  // Function to update URL parameters
+  function updateURL() {
+    const params = new URLSearchParams();
+    if (currentSearchQuery) params.set('search', currentSearchQuery);
+    if (selectedTag) params.set('tag', selectedTag);
+
+    const newURL = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
+    window.history.replaceState({}, '', newURL);
+  }
+
   // Function to apply all filters
   function applyFilters() {
     emoticonItems.forEach((item) => {
@@ -72,6 +81,7 @@ const { emoticons } = Astro.props;
         item.style.display = "none";
       }
     });
+    updateURL();
   }
 
   // Search input event listener
@@ -84,6 +94,13 @@ const { emoticons } = Astro.props;
   document.addEventListener('tag-filter-change', (event) => {
     const customEvent = event as CustomEvent;
     selectedTag = customEvent.detail.selectedTag;
+    applyFilters();
+  });
+
+  // Apply initial filters on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    // Set initial form values from URL
+    searchInput.value = currentSearchQuery;
     applyFilters();
   });
 </script>
