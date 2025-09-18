@@ -1,0 +1,146 @@
+---
+import type { Emoticon } from "../data/emoticons.ts";
+
+interface Props {
+  emoticons: Emoticon[];
+}
+
+const { emoticons } = Astro.props;
+
+// Extract all unique tags from emoticons
+const allTags = Array.from(
+  new Set(
+    emoticons.flatMap((emoticon) => emoticon.tags || [])
+  )
+).sort();
+---
+
+<div class="tag-filter-container">
+  <h3 class="filter-title">Filter by tags:</h3>
+  <div class="filter-controls">
+    <div class="tags-container">
+      <label class="tag-radio">
+        <input
+          type="radio"
+          name="tag-filter"
+          value=""
+          class="tag-input"
+          checked
+        />
+        <span class="tag-label">All</span>
+      </label>
+      {allTags.map((tag) => (
+        <label class="tag-radio">
+          <input
+            type="radio"
+            name="tag-filter"
+            value={tag}
+            class="tag-input"
+          />
+          <span class="tag-label">{tag}</span>
+        </label>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  const tagInputs = document.querySelectorAll('.tag-input') as NodeListOf<HTMLInputElement>;
+
+  // Track selected tag (single selection)
+  let selectedTag: string = '';
+
+  // Function to dispatch tag filter change event
+  function dispatchTagFilterChange() {
+    const event = new CustomEvent('tag-filter-change', {
+      detail: { selectedTag: selectedTag }
+    });
+    document.dispatchEvent(event);
+  }
+
+  // Add event listeners to tag radio buttons
+  tagInputs.forEach(input => {
+    input.addEventListener('change', () => {
+      if (input.checked) {
+        selectedTag = input.value;
+        dispatchTagFilterChange();
+      }
+    });
+  });
+</script>
+
+<style>
+  .tag-filter-container {
+    margin-bottom: 1rem;
+  }
+
+  .filter-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .filter-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag-radio {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 0.4rem 0.75rem;
+    transition: all 0.2s ease;
+    user-select: none;
+  }
+
+  .tag-radio:hover {
+    border-color: #009688;
+    background-color: #f0f9ff;
+  }
+
+  .tag-input {
+    margin: 0 0.4rem 0 0;
+    cursor: pointer;
+  }
+
+  .tag-input:checked + .tag-label {
+    font-weight: 600;
+  }
+
+  .tag-radio:has(.tag-input:checked) {
+    background-color: #009688;
+    border-color: #009688;
+    color: #fff;
+  }
+
+  .tag-label {
+    font-size: 0.9rem;
+    text-transform: capitalize;
+  }
+
+  @media (max-width: 600px) {
+    .tags-container {
+      gap: 0.375rem;
+    }
+
+    .tag-radio {
+      padding: 0.3rem 0.6rem;
+    }
+
+    .tag-label {
+      font-size: 0.85rem;
+    }
+  }
+</style>
