@@ -78,22 +78,22 @@ export const StaticEmoticons: Emoticon[] = [
   {
     name: "Table Flip",
     symbol: "(╯°□°）╯︵ ┻━┻",
-    tags: ["frustration", "anger"],
+    tags: ["frustrated", "angry"],
   },
   {
     name: "Put Table Back",
     symbol: "┬─┬ ノ( ゜-゜ノ)",
-    tags: ["frustration", "anger"],
+    tags: ["frustrated", "angry"],
   },
   {
     name: "Double Table Flip",
     symbol: "┻━┻ ︵ヽ(`Д´)ﾉ︵ ┻━┻",
-    tags: ["frustration", "anger"],
+    tags: ["frustrated", "angry"],
   },
   {
     name: "Put Double Table Back",
     symbol: "┬─┬ ︵ヽ(ಠ_ಠ)ﾉ︵ ┬─┬",
-    tags: ["frustration", "anger"],
+    tags: ["frustrated", "angry"],
   },
   {
     name: "Cat Smile",
