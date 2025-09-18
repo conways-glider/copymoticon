@@ -1,8 +1,8 @@
 ---
-const { name, symbol } = Astro.props;
+const { name, symbol, tags, index } = Astro.props;
 ---
 
-<div class="emoticon-item">
+<div class="emoticon-item" data-index={index} data-name={name} data-tags={tags}>
   <span class="name">{name}</span>
   <span class="symbol">{symbol}</span>
   <emoticon-copy-button-wrapper data-clipboard-text={symbol}>
@@ -11,9 +11,6 @@ const { name, symbol } = Astro.props;
 </div>
 
 <script>
-  // Find all buttons with the `copy-button` class on the page.
-  const buttons = document.querySelectorAll("button.copy-button");
-
   // Define the behaviour for our new type of HTML element.
   class EmoticonCopyButtonWrapper extends HTMLElement {
     connectedCallback() {
@@ -35,6 +32,7 @@ const { name, symbol } = Astro.props;
         }
 
         if (navigator.clipboard) {
+          // Use the Clipboard API to copy text
           navigator.clipboard
             .writeText(textToCopy)
             .then(() => showCopied(button))

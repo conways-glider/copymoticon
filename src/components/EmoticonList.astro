@@ -1,5 +1,6 @@
 ---
 import Emoticon from "./Emoticon.astro";
+import TagFilter from "./TagFilter.astro";
 import type { Emoticon as EmoticonType } from "../data/emoticons.ts";
 
 interface Props {
@@ -10,6 +11,7 @@ const { emoticons } = Astro.props;
 ---
 
 <div class="container">
+  <TagFilter emoticons={emoticons} />
   <input
     aria-label="Search and Filter"
     id="search"
@@ -18,8 +20,13 @@ const { emoticons } = Astro.props;
   />
   <div class="list">
     {
-      emoticons.map((item) => (
-        <Emoticon name={item.name} symbol={item.symbol} />
+      emoticons.map((item, index) => (
+        <Emoticon
+          name={item.name}
+          symbol={item.symbol}
+          tags={item.tags?.join(',') || ''}
+          index={index}
+        />
       ))
     }
   </div>
@@ -33,19 +40,68 @@ const { emoticons } = Astro.props;
     ) as HTMLCollectionOf<HTMLElement>,
   );
 
-  searchInput.addEventListener("input", () => {
-    const query = searchInput.value.toLowerCase();
+  // Initialize state from URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  let currentSearchQuery = urlParams.get('search') || '';
+  let selectedTag = urlParams.get('tag') || '';
+
+  // Function to check if an emoticon matches the current filters
+  function matchesFilters(item: HTMLElement): boolean {
+    const name = item.querySelector(".name")?.textContent?.toLowerCase() || "";
+    const symbol = item.querySelector(".symbol")?.textContent?.toLowerCase() || "";
+    const itemTags = (item.getAttribute('data-tags') || '').split(',').filter(tag => tag.trim());
+
+    // Check search query match
+    const matchesSearch = currentSearchQuery === '' ||
+      name.includes(currentSearchQuery) ||
+      symbol.includes(currentSearchQuery);
+
+    // Check tag filter match (empty selectedTag means show all)
+    const matchesTag = selectedTag === '' || itemTags.includes(selectedTag);
+
+    return matchesSearch && matchesTag;
+  }
+
+  // Function to update URL parameters
+  function updateURL() {
+    const params = new URLSearchParams();
+    if (currentSearchQuery) params.set('search', currentSearchQuery);
+    if (selectedTag) params.set('tag', selectedTag);
+
+    const newURL = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
+    window.history.replaceState({}, '', newURL);
+  }
+
+  // Function to apply all filters
+  function applyFilters() {
     emoticonItems.forEach((item) => {
-      const name =
-        item.querySelector(".name")?.textContent?.toLowerCase() || "";
-      const symbol =
-        item.querySelector(".symbol")?.textContent?.toLowerCase() || "";
-      if (name.includes(query) || symbol.includes(query)) {
+      if (matchesFilters(item)) {
         item.style.display = "";
       } else {
         item.style.display = "none";
       }
     });
+    updateURL();
+  }
+
+  // Search input event listener
+  searchInput.addEventListener("input", () => {
+    currentSearchQuery = searchInput.value.toLowerCase();
+    applyFilters();
+  });
+
+  // Listen for tag filter changes
+  document.addEventListener('tag-filter-change', (event) => {
+    const customEvent = event as CustomEvent;
+    selectedTag = customEvent.detail.selectedTag;
+    applyFilters();
+  });
+
+  // Apply initial filters on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    // Set initial form values from URL
+    searchInput.value = currentSearchQuery;
+    applyFilters();
   });
 </script>
 
