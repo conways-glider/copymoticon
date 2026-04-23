@@ -9,9 +9,7 @@ const { emoticons } = Astro.props;
 
 // Extract all unique tags from emoticons
 const allTags = Array.from(
-  new Set(
-    emoticons.flatMap((emoticon) => emoticon.tags || [])
-  )
+  new Set(emoticons.flatMap((emoticon) => emoticon.tags || [])),
 ).sort();
 ---
 
@@ -29,39 +27,43 @@ const allTags = Array.from(
         />
         <span class="tag-label">All</span>
       </label>
-      {allTags.map((tag) => (
-        <label class="tag-radio">
-          <input
-            type="radio"
-            name="tag-filter"
-            value={tag}
-            class="tag-input"
-          />
-          <span class="tag-label">{tag}</span>
-        </label>
-      ))}
+      {
+        allTags.map((tag) => (
+          <label class="tag-radio">
+            <input
+              type="radio"
+              name="tag-filter"
+              value={tag}
+              class="tag-input"
+            />
+            <span class="tag-label">{tag}</span>
+          </label>
+        ))
+      }
     </div>
   </div>
 </div>
 
 <script>
-  const tagInputs = document.querySelectorAll('.tag-input') as NodeListOf<HTMLInputElement>;
+  const tagInputs = document.querySelectorAll(
+    ".tag-input",
+  ) as NodeListOf<HTMLInputElement>;
 
   // Initialize selected tag from URL parameters
   const urlParams = new URLSearchParams(window.location.search);
-  let selectedTag = urlParams.get('tag') || '';
+  let selectedTag = urlParams.get("tag") || "";
 
   // Function to dispatch tag filter change event
   function dispatchTagFilterChange() {
-    const event = new CustomEvent('tag-filter-change', {
-      detail: { selectedTag: selectedTag }
+    const event = new CustomEvent("tag-filter-change", {
+      detail: { selectedTag: selectedTag },
     });
     document.dispatchEvent(event);
   }
 
   // Add event listeners to tag radio buttons
-  tagInputs.forEach(input => {
-    input.addEventListener('change', () => {
+  tagInputs.forEach((input) => {
+    input.addEventListener("change", () => {
       if (input.checked) {
         selectedTag = input.value;
         dispatchTagFilterChange();
@@ -70,11 +72,11 @@ const allTags = Array.from(
   });
 
   // Dispatch initial state on page load
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     // Set initial radio button state from URL
     // Only set if a tag is specified
-    if (selectedTag !== '') {
-      tagInputs.forEach(input => {
+    if (selectedTag !== "") {
+      tagInputs.forEach((input) => {
         input.checked = input.value === selectedTag;
       });
     }
